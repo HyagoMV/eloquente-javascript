@@ -69,6 +69,7 @@ A principal coisa para se fazer com números são cálculos aritméticos. As ope
 
 ```js
 100 + 4 * 11
+// → 144
 ```
 
 Os símbolos `+` e `*` são chamados de __operadores__. O primeiro é referente à adição e o segundo à multiplicação. Colocar um operador entre dois valores irá aplicá-lo a esses valores e produzirá um novo valor.
@@ -77,6 +78,7 @@ O significado do exemplo anterior é “adicione 4 e 100 e, em seguida, multipli
 
 ```javascript
 (100 + 4) * 11
+// → 1144
 ```
 
 Para subtração existe o operador `-` e para a divisão usamos o operador `/`.
@@ -225,6 +227,7 @@ Quando misturamos esses operadores _Booleanos_ com operadores aritméticos e out
 
 ```js
 1 + 1 == 2 && 10 * 10 > 50
+// → true
 ```
 
 O último operador lógico que iremos discutir não é unário nem binário, mas _ternário_, operando em três valores. Ele é escrito usando um ponto de interrogação e dois pontos, como mostrado abaixo:
