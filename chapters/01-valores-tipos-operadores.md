@@ -104,6 +104,7 @@ O próximo tipo básico de dado é a _String_. _Strings_ são usadas para repres
 ```js
 "Patch my boat with chewing gum"
 'Monkeys wave goodbye'
+`Other String`
 ```
 
 Ambas as aspas simples e duplas podem ser usadas para representar _Strings_, contanto que as aspas abertas sejam iguais no início e no fim.
@@ -127,12 +128,14 @@ Existe, obviamente, situações nas quais você vai querer que a barra invertida
 
 ```js
 "A newline character is written like \"\\n\"."
+// → "A newline character is written like "\n"."
 ```
 
 _Strings_ não podem ser divididas, multiplicadas nem subtraídas, entretanto, o operador `+` pode ser usado nelas. Ele não efetua a adição, mas _concatena_, ou seja, junta duas _Strings_ em uma única _String_. O próximo exemplo produzirá a _String_ `"concatenate"`:
 
 ```js
 "con" + "cat" + "e" + "nate"
+// → "concatenate"
 ```
 
 Existem outras maneiras de manipular as _Strings_, as quais serão discutidas quando chegarmos aos métodos no [Capítulo 4](./04-estruturas-de-dados.md#métodos).
