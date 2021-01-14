@@ -55,6 +55,8 @@ Para números muito grandes ou pequenos, você pode usar a notação científica
 
 ```js
 2.998e8
+// Ou
+2.998E8
 ```
 
 Isso é 2.998 x 10⁸ = 299800000.
@@ -63,13 +65,13 @@ Cálculos usando números inteiros menores que os 9 quadrilhões mencionados, se
 
 ## Aritmética
 
-A principal coisa para se fazer com números são cálculos aritméticos. As operações como adição ou multiplicação recebem dois valores numéricos e produzem um novo número a partir deles. Elas são representadas dessa forma no JavaScript:
+A principal coisa para se fazer com números são cálculos aritméticos. As operações como __adição__ ou __multiplicação__ recebem dois valores numéricos e produzem um novo número a partir deles. Elas são representadas dessa forma no JavaScript:
 
 ```js
 100 + 4 * 11
 ```
 
-Os símbolos `+` e `*` são chamados de _operadores_. O primeiro é referente à adição e o segundo à multiplicação. Colocar um operador entre dois valores irá aplicá-lo a esses valores e produzirá um novo valor.
+Os símbolos `+` e `*` são chamados de __operadores__. O primeiro é referente à adição e o segundo à multiplicação. Colocar um operador entre dois valores irá aplicá-lo a esses valores e produzirá um novo valor.
 
 O significado do exemplo anterior é “adicione 4 e 100 e, em seguida, multiplique esse resultado por 11” ou a multiplicação é realizada antes da adição? Como você deve ter pensado, a multiplicação acontece primeiro. Entretanto, como na matemática, você pode mudar esse comportamento envolvendo a adição com parênteses.
 
@@ -301,8 +303,8 @@ Outra importante propriedade destes 2 operadores é que a expressão a sua direi
 
 ## Resumo
 
-Nós vimos 4 tipos de valores do JavaScript neste capítulo. Números, _Strings_, _Booleanos_ e valores indefinidos.
+Nós vimos 4 tipos de valores do JavaScript neste capítulo. Números, _Strings_, _Booleanos_ e Valores Indefinidos.
 
-Alguns valores são criados digitando seu nome (`true`, `null`) ou valores (13, `"abc"`). Você pode combinar e transformar valores com operadores. Nós vimos operadores binários para operações aritméticas (`+`, `-`, `*`, `/`, e `%`), um para concatenação de _String_ (`+`), comparação (`==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=`) e lógica (`&&`, `||`), assim como vários operadores unários (`-` para negativar um número, `!` para negar uma lógica, `typeof` para encontrar o tipo do valor) e o operador ternario (?:) para retornar um de dois valores, baseando-se em um terceiro valor.
+Alguns valores são criados digitando seu nome (`true`, `null`) ou valores (13, `"abc"`). Você pode combinar e transformar valores com operadores. Nós vimos operadores binários para __operações aritméticas__ (`+`, `-`, `*`, `/`, e `%`), __operador de concatenação__ de _String_ (`+`), __operadores de comparação__ (`==`, `!=`, `===`, `!==`, `<`, `>`, `<=`, `>=`) e __operadores lógicos__ (`&&`, `||`), assim como vários operadores unários (`-` para negativar um número, `!` para negar uma lógica, `typeof` para encontrar o tipo do valor) e o __operador condicional__ (?:) para retornar um de dois valores, baseando-se em um terceiro valor.
 
 Isto lhe dá informação suficiente para usar o JavaScript como uma calculadora de bolso, mas não muito mais. O próximo capítulo vai começar a amarrar essas operações básicas conjuntamente dentro de programas básicos.
