@@ -43,12 +43,18 @@ O JavaScript utiliza um número fixo de bits, mais precisamente 64 deles, para a
 
 A memória do computador costumava ser bem menor e, por isso, as pessoas usavam grupos de 8 ou 16 bits para representar os números. Por isso, era muito fácil extrapolar essa capacidade de armazenamento tão pequena usando números que não cabiam nesse espaço. Hoje em dia, até os computadores pessoais possuem memória suficiente, possibilitando usar grupos de 64 bits, sendo apenas necessário se preocupar em exceder o espaço quando estiver lidando com números extremamente grandes.
 
-Entretanto, nem todos os números inteiros menores do que 18 quintilhões cabem em um número no JavaScript. Os bits também armazenam números negativos, sendo que um desses bits indica o sinal do número. Um grande problema é que números fracionários também precisam ser representados. Para fazer isso, alguns bits são usados para armazenar a posição do ponto decimal. Na realidade, o maior número inteiro que pode ser armazenado está na região de 9 quatrilhões (15 zeros), que ainda assim é extremamente grande.
+Entretanto, nem todos os números inteiros menores do que 18 quintilhões cabem em um número no JavaScript. Os bits também armazenam números negativos, sendo que o primeiro _bit_ (da esquerda/direita) indica o sinal do número. Um grande problema é que números fracionários também precisam ser representados. Para fazer isso, alguns _bits_ são usados para armazenar a posição do ponto decimal. Na realidade, o maior número inteiro que pode ser armazenado está na região de 9 quatrilhões (15 zeros), que ainda assim é extremamente grande.
+
+```js
+9007199254740991
+// 9 quatrilhões 7 trilhões 199 bilhões 254 milhões 740 mil 991
+```
 
 Números fracionários são escritos usando um ponto.
 
 ```js
-9.81
+✅ 9.81
+❌ 9,81
 ```
 
 Para números muito grandes ou pequenos, você pode usar a notação científica adicionando um “e” (de “expoente”) seguido do valor do expoente:
@@ -61,7 +67,7 @@ Para números muito grandes ou pequenos, você pode usar a notação científica
 
 Isso é 2.998 x 10⁸ = 299800000.
 
-Cálculos usando números inteiros menores que os 9 quadrilhões mencionados, serão com certeza precisos. Infelizmente, cálculos com número fracionários normalmente não são precisos. Da mesma forma que π (pi) não pode ser expresso de forma precisa por uma quantidade finita de dígitos decimais, muitos números perdem sua precisão quando existem apenas 64 bits disponíveis para armazená-los. Isso é vergonhoso, porém causa problemas apenas em algumas situações específicas. O mais importante é estar ciente dessa limitação e tratar números fracionários como aproximações e não como valores precisos.
+Cálculos usando números inteiros __menores que os 9 quadrilhões__ mencionados, __serão com certeza precisos__. Infelizmente, cálculos com número fracionários normalmente não são precisos. Da mesma forma que π (pi) não pode ser expresso de forma precisa por uma quantidade finita de dígitos decimais, muitos números perdem sua precisão quando existem apenas 64 bits disponíveis para armazená-los. Isso é vergonhoso, porém causa problemas apenas em algumas situações específicas. O mais importante é estar ciente dessa limitação e __tratar números fracionários como aproximações__ e não como valores precisos.
 
 ## Aritmética
 
