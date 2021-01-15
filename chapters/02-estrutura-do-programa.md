@@ -446,7 +446,7 @@ switch (variavel) {
 }
 ```
 
-Dentro do bloco aberto pelo `switch`, você pode colocar qualquer número de rótulo no `case`. O programa vai pular para o rótulo correspondente ao valor que `switch` fornece, ou para `default` se nenhum valor for encontrado. Então ele começa a executar as declarações, e continua a passar pelos rótulos, até encontrar uma declaração `break`. Em alguns casos, como no exemplo `case "value4"`, pode ser usado para compartilhar algum código entre os `cases` (ele recomenda "ir lá fora" para ambos os tempos `value4` e `value4`). Mas tenha cuidado: é fácil esquecer de um `break`, o que fará com que o programa execute código que você não gostaria de executar.
+Dentro do bloco aberto pelo `switch`, você pode colocar qualquer número de rótulo no `case`. O programa vai pular para o rótulo correspondente ao valor que `switch` fornece, ou para `default` se nenhum valor for encontrado. Então ele começa a executar as declarações, e continua a passar pelos rótulos, até encontrar uma declaração `break`. Em alguns casos, como no exemplo `case "value4"`, pode ser usado para compartilhar algum código entre os `cases` (ele executa `defaultAction()` para ambos os rótulo `value4` e `default`). Mas tenha cuidado: é fácil esquecer de um `break`, o que fará com que o programa execute código que você não gostaria de executar.
 
 ## Capitalização
 
@@ -459,7 +459,7 @@ FuzzyLittleTurtle
 fuzzyLittleTurtle
 ```
 
-O primeiro estilo é difícil de ler. Pessoalmente, eu gosto de usar sublinhados, embora esse estilo seja um pouco doloroso de escrever. O padrão das funções em JavaScript, e o da maioria dos programadores JavaScript, é seguir o último estilo - eles capitalizam toda palavra exceto a primeira. Não é difícil se acostumar com coisas pequenas assim, e o código com estilos de nomenclaturas mistas pode se tornar desagradável para leitura, então vamos seguir esta convenção.
+O primeiro estilo é difícil de ler. Pessoalmente, eu gosto de usar sublinhados, embora esse estilo seja um pouco doloroso de escrever. O padrão das funções em JavaScript, e o da maioria dos programadores JavaScript, é seguir o __último estilo__ - eles capitalizam toda palavra exceto a primeira. Não é difícil se acostumar com coisas pequenas assim, e o código com estilos de nomenclaturas mistas pode se tornar desagradável para leitura, então vamos seguir esta convenção.
 
 Em alguns casos, como a função `Number`, a primeira letra da variável é capitalizada também. Isso é feito para marcar a função como um construtor. O que é um construtor será esclarecido no [capítulo 6](./06-a-vida-secreta-dos-objetos.md). Por enquanto, o importante é não ser incomodado por esta aparente falta de consistência.
 
@@ -498,7 +498,7 @@ var theNumber = 11213;
 
 Você agora sabe que um programa é construído de declarações, que as vezes contém mais declarações. Declarações tendem a conter expressões, que podem ser feitas de pequenas expressões.
 
-Colocar declarações uma após a outra nos dá um programa que é executado de cima para baixo. Você pode causar transtornos no fluxo de controle usando declarações condicionais (`ìf`, `else` e `switch`) e _loop_s (`while`, `do` e `for`).
+Colocar declarações uma após a outra nos dá um programa que é executado de cima para baixo. Você pode causar transtornos no fluxo de controle usando declarações condicionais (`ìf`, `else` e `switch`) e _loops_ (`while`, `do` e `for`).
 
 As variáveis podem ser usadas para arquivar pedaços de dados sob um nome, e são úteis para rastrear o estado de um programa. O ambiente é um conjunto de variáveis que são definidas. O sistema JavaScript sempre coloca um número padrão de variáveis úteis dentro do seu ambiente.
 
