@@ -59,11 +59,11 @@ Quando uma variável aponta para um valor, isso não significa que estará ligad
 ```javascript
 var humor = "leve";
 console.log(humor);
-// -> leve 
+//→ leve 
 
 humor = "negro";
 console.log(humor);
-// -> negro
+//→ negro
 ```
 
 Você deve imaginar variáveis como tentáculos, ao invés de caixas. Elas não *contêm* valores; elas os *agarram* - duas variáveis podem referenciar o mesmo valor. Somente os valores que o programa mantém tem o poder de ser acessado por ele. Quando você precisa se lembrar de algo, você aumenta o número de tentáculos para agarrar outros valores ou reatribui a um dos seus tentáculos existentes.
@@ -79,7 +79,7 @@ Um exemplo. Para lembrar da quantidade de dólares que Luigi ainda lhe deve, voc
 var valorDivida = 140;
 valorDivida = valorDivida - 35;
 console.log(valorDivida);
-// -> 105
+//→ 105
 
 ```
 
@@ -108,7 +108,9 @@ A coleção de variáveis e seus valores que existem em um determinado tempo é 
 
 ## Funções
 
-Muitos dos valores fornecidos no ambiente padrão são do tipo `function` (função). Uma função é um pedaço de programa envolvido por um valor. Este valor pode ser aplicado a fim de executar o programa envolvido. Por exemplo, no ambiente do navegador, a variável `alert` detém uma função que mostra uma pequena caixa de diálogo com uma mensagem. É usada da seguinte forma:
+Muitos dos valores fornecidos no ambiente padrão são do tipo `function`. Uma função é um conjunto de instruções atribuida a uma variável. Este valor pode ser executado através do operador de chamada `()` a fim de executar as instruções armazenadas. Por exemplo, no ambiente do navegador, a variável `alert` contém uma função que mostra uma pequena caixa de diálogo com uma mensagem. 
+
+É usada da seguinte forma:
 
 ```javascript
 alert("Good morning!");
@@ -127,7 +129,7 @@ Quando rodarmos os exemplos ou seu próprio código nas páginas deste livro, o 
 ```javascript
 var x = 30;
 console.log("o valor de x é ", x);
-// o valor de x é 30
+//→ o valor de x é 30
 ```
 
 Embora eu tenha afirmado que nomes de variáveis não podem conter pontos, `console.log` claramente contém um ponto. Eu não tinha mentido para você. Esta não é uma simples variável, mas na verdade uma expressão que retorna o campo `log` do valor contido na variável `console`. Nós vamos entender o que isso significa no capítulo 4.
@@ -138,9 +140,10 @@ Mostrar uma caixa de diálogo ou escrever texto na tela é um efeito colateral. 
 
 ```javascript
 console.log(Math.max(2, 4));
+//→ 4
 ```
 
-Quando uma função produz um valor, é dito que ela _retorna_ (`return`) ele. Em JavaScript, tudo que produz um valor é uma expressão, o que significa que chamadas de função podem ser usadas dentro de expressões maiores. No exemplo abaixo, uma chamada para a função `Math.min`, que é o oposto de `Math.max`, é usada como uma das entradas para o operador de soma:
+Quando uma função produz um valor, é dito que ela _retorna_ (`return`) ele. Em JavaScript, __tudo que produz um valor é uma expressão__, o que significa que chamadas de função podem ser usadas dentro de expressões maiores. No exemplo abaixo, uma chamada para a função `Math.min`, que é o oposto de `Math.max`, é usada como uma das entradas para o operador de soma:
 
 ```javascript
 console.log(Math.min(2, 4) + 100);
@@ -166,11 +169,11 @@ prompt("Tell me everything you know.", "...");
 
 ![prompt](../img/prompt.png)
 
-Estas duas funções não são muito usadas na programação moderna para web, principalmente porque você não tem controle sobre o modo que a janela vai aparecer, mas elas são úteis para experimentos.
+__Estas duas funções não são muito usadas na programação moderna para web__, principalmente porque você não tem controle sobre o modo que a janela vai aparecer, mas elas são úteis para experimentos.
 
 ## Fluxo de Controle
 
-Quando seu programa contém mais que uma declaração, as declarações são executadas, previsivelmente, de cima para baixo. Como um exemplo básico, este programa tem duas declarações. A primeira pergunta ao usuário por um número, e a segunda, que é executada posteriormente, mostra o quadrado deste número:
+Quando seu programa contém mais que uma declaração, as declarações são executadas, previsivelmente, __de cima para baixo__. Como um exemplo básico, este programa tem duas declarações. A primeira pergunta ao usuário por um número, e a segunda, que é executada posteriormente, mostra o quadrado deste número:
 
 ```javascript
 var theNumber = Number(prompt("Pick a number", ""));
@@ -218,62 +221,77 @@ else
 Se tivermos mais que dois caminhos a escolher, múltiplos pares de `if`/`else` podem ser "encadeados". Aqui temos um exemplo:
 
 ```js
-var num = Number(prompt("Pick a number", "0"));
+var numero = Number(prompt("Pick a number", "0"));
 
-if (num < 10)
+if (numero < 10)
   alert("Small");
-else if (num < 100)
-  alert("Medium");
-else
-  alert("Large");
+else 
+  if (numero < 100)
+    alert("Medium");
+  else
+    alert("Large");
 ```
 
-O programa irá primeiramente verificar se `num` é menor que 10. Se for, ele escolhe esse caminho, mostra "Small" e termina sua execução. Se não for, ele escolhe o caminho `else`, que contém o segundo `if`. Se a segunda condição (< 100) for verdadeira, o número está entre 10 e 100, e "Medium" será mostrado. Caso contrário, o segundo e último `else` será escolhido.
+O programa irá primeiramente verificar se `numero` é menor que 10. Se for, ele escolhe esse caminho, mostra "Small" e termina sua execução. Se não for, ele escolhe o caminho `else`, que contém o segundo `if`. Se a segunda condição (< 100) for verdadeira, o número está entre 10 e 100, e "Medium" será mostrado. Caso contrário, o segundo e último `else` será escolhido.
 
 O esquema de setas para este programa parece com algo assim:
 
 ![Fluxo de Controle do Aninhamento if](../img/controlflow_nested_if.png)
 
-## Loops While e Do
+## _loop_s While e Do
 
 Considere um programa que imprime todos os números pares de 0 a 12. Uma forma de escrever isso é:
 
 ```js
 console.log(0);
+//→ 0
+
 console.log(2);
+//→ 2
+
 console.log(4);
+//→ 4
+
 console.log(6);
+//→ 6
+
 console.log(8);
-console.log(10);
+//→ 8
+
+console.log(10)
+//→ 10
+
 console.log(12);
+//→ 12
 ```
 
-Isso funciona, mas a ideia de escrever um programa é fazer com que algo seja _menos_ trabalhoso, e não o contrário. Se precisarmos de todos os números pares menores do que 1.000, essa abordagem seria inviável. O que precisamos é de uma maneira de repetir código. Essa forma de fluxo de controle é chamada de _laço de repetição_ (loop).
+Isso funciona, mas a ideia de escrever um programa é fazer com que algo seja ___menos___ trabalhoso, e não o contrário. Se precisarmos de todos os números pares menores do que 1.000, essa abordagem seria inviável. O que precisamos é de uma maneira de repetir código. Essa forma de fluxo de controle é chamada de _laço de repetição_ (_loop_).
 
-![Fluxo de Controle do Loop](../img/controlflow_loop.png)
+![Fluxo de Controle do _loop_](../img/controlflow__loop_.png)
 
-O fluxo de controle do loop nos permite voltar a um mesmo ponto no programa onde estávamos anteriormente e repeti-lo no estado atual do programa. Se combinarmos isso a uma variável contadora, conseguimos fazer algo assim:
+O fluxo de controle do _loop_ nos permite voltar a um mesmo ponto no programa onde estávamos anteriormente e repeti-lo no estado atual do programa. Se combinarmos isso a uma variável contadora, conseguimos fazer algo assim:
 
 ```js
-var number = 0;
-while (number <= 12) {
-  console.log(number);
-  number = number + 2;
+var numero = 0;
+while (numero <= 12) {
+  console.log(numero);
+  numero = numero + 2;
 }
-// → 0
-// → 2
-//   … etcetera
+//→ 0
+//→ 2
+//→ 4
+//→ ...
 ```
 
-Uma declaração que inicia com a palavra-chave `while` cria um loop. A palavra `while` é acompanhada por uma expressão entre parênteses e seguida por uma declaração, similar ao `if`. O loop continua executando a declaração enquanto a expressão produzir um valor que, após convertido para o tipo Booleano, seja `true`.
+Uma declaração que inicia com a palavra-chave `while` cria um _loop_. A palavra `while` é acompanhada por uma expressão entre parênteses e seguida por uma declaração, similar ao `if`. O _loop_ continua executando a declaração enquanto a expressão produzir um valor que, após convertido para o tipo Booleano, seja `true`.
 
-Nesse loop, queremos imprimir o número atual e somar dois em nossa variável. Sempre que precisarmos executar múltiplas declarações dentro de um loop, nós as envolvemos com chaves (`{` e `}`). As chaves, para declarações, são similares aos parênteses para as expressões, agrupando e fazendo com que sejam tratadas como uma única declaração. Uma sequência de declarações envolvidas por chaves é chamada de _bloco_.
+Nesse _loop_, queremos imprimir o número atual e somar dois em nossa variável. Sempre que precisarmos executar múltiplas declarações dentro de um _loop_, nós as envolvemos com chaves (`{` e `}`). As chaves, para declarações, são similares aos parênteses para as expressões, __agrupam e fazem com que sejam tratadas como uma única bloco__. Uma sequência de declarações envolvidas por chaves é chamada de _bloco_.
 
-Muitos programadores JavaScript envolvem cada `if` e loop com chaves. Eles fazem isso tanto para manter a consistência quanto para evitar que seja necessário adicionar ou remover chaves quando houver alterações posteriores no número de declarações. Nesse livro, para sermos mais breves, iremos escrever sem chaves a maioria das declarações compostas por uma única linha. Fique a vontade para escolher o estilo que preferir.
+Muitos programadores JavaScript envolvem cada `if` e _loop_ com chaves. Eles fazem isso tanto para manter a consistência quanto para evitar que seja necessário adicionar ou remover chaves quando houver alterações posteriores no número de declarações. Nesse livro, para sermos mais breves, iremos escrever sem chaves a maioria das declarações compostas por uma única linha. Fique a vontade para escolher o estilo que preferir.
 
-A variável `number` demonstra uma maneira na qual variáveis podem verificar o progresso de um programa. Toda vez que o loop se repete, `number` é incrementado por `2`. No início de cada repetição, ele é comparado com o número `12` para decidir se o programa terminou de executar todo o trabalho esperado.
+A variável `numero` demonstra uma maneira na qual variáveis podem verificar o progresso de um programa. Toda vez que o _loop_ se repete, `numero` é incrementado em `2`. No início de cada repetição, ele é comparado com o número `12` para decidir se o _loop_ terminou de executar todo o trabalho esperado.
 
-Como um exemplo de algo que seja útil, podemos escrever um programa que calcula e mostra o valor de 2¹⁰ (2 elevado à décima potência). Nós usamos duas variáveis: uma para armazenar o resultado e outra para contar quantas vezes multiplicamos esse resultado por 2. O loop testa se a segunda variável já atingiu o valor 10 e então atualiza ambas as variáveis.
+Como um exemplo de algo que seja útil, podemos escrever um programa que calcula e mostra o valor de 2¹⁰ (2 elevado à décima potência). Nós usamos duas variáveis: uma para armazenar o resultado e outra para contar quantas vezes multiplicamos esse resultado por 2. O _loop_ testa se a segunda variável já atingiu o valor 10 e então atualiza ambas as variáveis.
 
 ```js
 var result = 1;
@@ -288,7 +306,9 @@ console.log(result);
 
 O contador pode também iniciar com `1` e checar o valor com `<= 10`, mas por razões que iremos ver no [Capítulo 4](./04-estruturas-de-dados.md#user-content-indexação-de-arrays), é uma boa ideia se acostumar a usar a contagem iniciando com zero.
 
-O loop `do` é uma estrutura de controle similar ao `while`. A única diferença entre eles é que o `do` sempre executa suas declarações ao menos uma vez e inicia o teste para verificar se deve parar ou não apenas após a primeira execução. Para demonstrar isso, o teste aparece após o corpo do loop:
+O _loop_ `do` é uma estrutura de controle similar ao `while`. A única diferença entre eles é que o `do` sempre executa suas declarações ao menos uma vez e inicia o teste para verificar se deve parar ou não apenas após a primeira execução. 
+
+Para demonstrar isso, o teste aparece após o corpo do _loop_:
 
 ```js
 do {
@@ -297,31 +317,41 @@ do {
 console.log(name);
 ```
 
-Esse programa irá forçar você a informar um nome. Ele continuará pedindo até que seja fornecido um valor que não seja uma string vazia. Aplicar o operador `!` faz com que o valor seja convertido para o tipo Booleano antes de negá-lo, e todas as strings exceto `""` convertem para `true`.
+Esse programa irá forçar você a informar um nome. Ele continuará pedindo até que seja fornecido um valor que não seja uma string vazia. Aplicar o operador NOT `!` faz com que o valor seja convertido para o tipo Booleano antes de negá-lo, e todas as strings exceto `""` convertem para `true`.
 
 ## Indentando Código
 
 Você deve ter reparado nos espaços que coloco em algumas declarações. No JavaScript, eles não são necessários e o computador irá aceitar o programa sem eles. De fato, até as quebras de linhas são opcionais. Se você quiser, pode escrever um programa inteiro em uma única linha. O papel da indentação dentro dos blocos é fazer com que a estrutura do código se destaque. Em códigos complexos, onde temos blocos dentro de blocos, pode se tornar extremamente difícil distinguir onde um bloco começa e o outro termina. Com a indentação adequada, o formato visual do programa corresponde ao formato dos blocos contidos nele. Gosto de usar dois espaços para cada bloco, mas essa preferência pode variar — algumas pessoas usam quatro espaços e outras usam caracteres "tab".
 
-## Loops For
+## _loop_s For
 
-Vários loops seguem o padrão visto nos exemplos anteriores do `while`. Primeiramente uma variável "contadora" é criada para monitorar o progresso do loop. Em seguida, temos o loop `while` que contém uma expressão de teste que normalmente checa se o contador alcançou algum limite. O contador é atualizado no final do corpo do loop, permitindo acompanhar o progresso.
+Vários _loop_s seguem o padrão visto nos exemplos anteriores do `while`. Primeiramente uma variável "contadora" é criada para monitorar o progresso do _loop_. Em seguida, temos o _loop_ `while` que contém uma expressão de teste que normalmente checa se o contador alcançou algum limite. O contador é atualizado no final do corpo do _loop_, permitindo acompanhar o progresso.
 
-Por esse padrão ser muito comum, o JavaScript e linguagens similares fornecem uma forma um pouco mais curta e compreensiva chamada de loop `for`.
+Por ser um padrão muito comum, o JavaScript e outras linguagens fornecem uma forma um pouco mais curta e compreensiva chamada de _loop_ `for`.
 
 ```js
 for (var number = 0; number <= 12; number = number + 2)
   console.log(number);
 // → 0
 // → 2
-//   … etcetera
+// → 4
+// → ...
 ```
 
-Esse programa é equivalente ao exemplo anterior que imprime números pares. A única diferença é que todas as declarações relacionadas ao "estado" do loop estão agora agrupadas.
+Esse programa é equivalente ao exemplo anterior que imprime números pares. A única diferença é que todas as declarações relacionadas ao "estado" do _loop_ estão agora agrupadas.
 
-Os parênteses após a palavra-chave `for` devem conter dois pontos e vírgulas. A parte anterior ao primeiro ponto e vírgula _inicializa_ o loop, normalmente definindo uma variável. A segunda parte é a expressão que _verifica_ se o loop deve continuar ou não. A parte final _atualiza_ o estado do loop após cada iteração. Na maioria dos casos, essa construção é menor e mais clara que a do `while`.
+A estrutura do _loop_ `for`:
 
-Aqui está o código que calcula 2¹⁰ usando `for` ao invés de `while`:
+* A  primeira expressão _inicializa_ o _loop_, normalmente definindo uma variável. 
+* A segunda expressão _verifica_ se o _loop_ deve continuar ou não.
+* A terceira expressão _atualiza_ o estado do _loop_ após cada __iteração__. 
+
+---
+__NOTA:__ Na maioria dos casos, essa construção é menor e mais clara que a do `while`.
+
+---
+
+Aqui está o código que calcula 2<sup>10</sup> usando `for` ao invés de `while`:
 
 ```js
 var result = 1;
@@ -331,11 +361,11 @@ console.log(result);
 // → 1024
 ```
 
-Repare que mesmo não abrindo o bloco com `{`, a declaração no loop continua indentada com dois espaços para deixar claro que ela "pertence" à linha anterior a ela.
+Repare que mesmo não abrindo o bloco com `{`, a declaração no _loop_ continua indentada com dois espaços para deixar claro que ela "pertence" à linha anterior a ela.
 
-## Quebrando a execução de um Loop
+## Quebrando a execução de um _loop_
 
-Ter uma condição que produza um resultado `false` não é a única maneira que um loop pode parar. Existe uma declaração especial chamada `break` que tem o efeito de parar a execução e sair do loop em questão.
+Ter uma condição que produza um resultado `false` não é a única maneira que um _loop_ pode parar. Existe uma declaração especial chamada `break` que tem o efeito de parar a execução e sair do _loop_ em atual.
 
 Esse programa ilustra o uso da declaração `break`. Ele encontra o primeiro número que é, ao mesmo tempo, maior ou igual a 20 e divisível por 7.
 
@@ -348,19 +378,19 @@ console.log(current);
 // → 21
 ```
 
-Usar o operador resto (`%`) é uma maneira fácil de testar se um número é divisível por outro. Se for, o resto da divisão entre eles é zero.
+Usar o operador resto `%` é uma maneira fácil de testar se um número é divisível por outro. Se o resto da divisão entre eles for zero.
 
-A construção do `for` nesse exemplo não contém a parte que checa pelo fim do loop. Isso significa que o loop não vai parar de executar até que a declaração `break` contida nele seja executada.
+A construção do `for` nesse exemplo não contém a parte que checa pelo fim do _loop_. Isso significa que o _loop_ não vai parar de executar até que a declaração `break` contida nele seja executada.
 
-Se você não incluir a declaração `break` ou acidentalmente escrever uma condição que sempre produza um resultado `true`, seu programa ficará preso em um _loop infinito_. Um programa preso em um loop infinito nunca vai terminar sua execução, o que normalmente é uma coisa ruim.
+Se você não incluir a declaração `break` ou acidentalmente escrever uma condição que sempre produza um resultado `true`, seu programa ficará preso em um __loop_ infinito_. Um programa preso em um _loop_ infinito nunca vai terminar sua execução, o que na maioria dos casos é uma coisa ruim.
 
-Se você criar um loop infinito em algum dos exemplos destas páginas, você normalmente será perguntado se deseja interromper a execução do script após alguns segundos. Se isso não funcionar, você deverá fechar a aba que está trabalhando, ou em alguns casos, fechar o navegador para recuperá-lo.
+Se você criar um _loop_ infinito em algum dos exemplos destas páginas, você normalmente será perguntado se deseja interromper a execução do script após alguns segundos. Se isso não funcionar, você deverá fechar a aba que está trabalhando, ou em alguns casos, fechar o navegador para recuperá-lo.
 
-A palavra-chave `continue` é similar ao `break`, de modo que também influencia o progresso de um loop. Quando `continue` é encontrado no corpo de um loop, o controle de execução pula para fora do corpo e continua executando a próxima iteração do loop.
+A palavra-chave `continue` é similar ao `break`, de modo que também influencia o progresso de um _loop_. Quando `continue` é encontrado no corpo de um _loop_, o controle de execução pula para a próxima ___iteração___ do _loop_.
 
 ## Atualizando variáveis sucintamente
 
-Um programa, especialmente quando em loop, muitas vezes precisa de atualizar uma variável para armazenar um valor baseado no valor anterior dessa variável.
+Um programa, especialmente em _loops_, precisa atualizar o valor da variável  baseado-se no valor anterior.
 
 ```javascript
 counter = counter + 1;
@@ -368,8 +398,7 @@ counter = counter + 1;
 
 O JavaScript fornece um atalho para isso:
 
-```javascript
-
+```js
 counter += 1;
 
 ```
@@ -390,31 +419,34 @@ Para `counter += 1` e `counter -= 1`, existem equivalentes mais curtos: `counter
 É comum que o código fique assim:
 
 ```javascript
-if (variable == "value1") action1();
-else if (variable == "value2") action2();
-else if (variable == "value3") action3();
+if (variavel == "value1") action1();
+else if (variavel == "value2") action2();
+else if (variavel == "value3") action3();
 else defaultAction();
 ```
 
-Há um construtor chamado `switch` que se destina a resolver o envio de valores de uma forma mais direta. Infelizmente, a sintaxe JavaScript usada para isso (que foi herdada na mesma linha de linguagens de programação, C e Java) é um pouco estranha - frequentemente uma cadeia de declarações `if` continua parecendo melhor. Aqui está um exemplo:
+Há um construtor chamado `switch` que se destina a resolver o envio de valores de uma forma mais direta. Infelizmente, a sintaxe JavaScript usada para isso (que foi herdada de outras linguagens de programação, C e Java) é um pouco estranha - frequentemente uma cadeia de declarações `if` continua parecendo melhor. Aqui está um exemplo:
 
 ```javascript
-switch (prompt("What is the weather like?")) {
-  case "rainy":
-    console.log("Remember to bring an umbrella.");
+switch (variavel) {
+  case "value1":
+    action1();
     break;
-  case "sunny":
-    console.log("Dress lightly.");
-  case "cloudy":
-    console.log("Go outside.");
+  case "value2":
+    action2();
+  case "value3":
+    action3();
+    break;
+  case: "value4":
+    defaultAction();
     break;
   default:
-    console.log("Unknown weather type!");
+    defaultAction();
     break;
 }
 ```
 
-Dentro do bloco aberto pelo `switch`, você pode colocar qualquer número de rótulo no `case`. O programa vai pular para o rótulo correspondente ao valor que `switch` fornece, ou para `default` se nenhum valor for encontrado. Então ele começa a executar as declarações, e continua a passar pelos rótulos, até encontrar uma declaração `break`. Em alguns casos, como no exemplo `case "sunny"`, pode ser usado para compartilhar algum código entre os `cases` (ele recomenda "ir lá fora" para ambos os tempos `sunny` e `cloudy`). Mas tenha cuidado: é fácil esquecer de um `break`, o que fará com que o programa execute código que você não gostaria de executar.
+Dentro do bloco aberto pelo `switch`, você pode colocar qualquer número de rótulo no `case`. O programa vai pular para o rótulo correspondente ao valor que `switch` fornece, ou para `default` se nenhum valor for encontrado. Então ele começa a executar as declarações, e continua a passar pelos rótulos, até encontrar uma declaração `break`. Em alguns casos, como no exemplo `case "value1"`, pode ser usado para compartilhar algum código entre os `cases` (ele recomenda "ir lá fora" para ambos os tempos `sunny` e `cloudy`). Mas tenha cuidado: é fácil esquecer de um `break`, o que fará com que o programa execute código que você não gostaria de executar.
 
 ## Capitalização
 
@@ -466,7 +498,7 @@ var theNumber = 11213;
 
 Você agora sabe que um programa é construído de declarações, que as vezes contém mais declarações. Declarações tendem a conter expressões, que podem ser feitas de pequenas expressões.
 
-Colocar declarações uma após a outra nos dá um programa que é executado de cima para baixo. Você pode causar transtornos no fluxo de controle usando declarações condicionais (`ìf`, `else` e `switch`) e loops (`while`, `do` e `for`).
+Colocar declarações uma após a outra nos dá um programa que é executado de cima para baixo. Você pode causar transtornos no fluxo de controle usando declarações condicionais (`ìf`, `else` e `switch`) e _loop_s (`while`, `do` e `for`).
 
 As variáveis podem ser usadas para arquivar pedaços de dados sob um nome, e são úteis para rastrear o estado de um programa. O ambiente é um conjunto de variáveis que são definidas. O sistema JavaScript sempre coloca um número padrão de variáveis úteis dentro do seu ambiente.
 
@@ -478,7 +510,7 @@ Se você está inseguro sobre como testar suas soluções para os exercícios, c
 
 Cada exercício começa com a descrição de um problema. Leia e tente resolvê-lo. Se você tiver dificuldades, considere a leitura das dicas abaixo do exercício. As soluções completas para os exercícios não estão inclusas neste livro, mas você pode procurar elas onlines em [eloquentjavascript.net/code](http://eloquentjavascript.net/code/). Se você quer aprender algo, eu recomendo que veja as soluções somente após ter resolvido o exercício, ou pelo menos, depois que tentou por um período longo e duro o suficiente para dar uma pequena dor de cabeça.
 
-### Triângulo com Loop
+### Triângulo com _loop_
 
 Escreva um programa que faça sete chamadas a `console.log()` para retornar o seguinte triângulo:
 
@@ -506,7 +538,7 @@ A maioria dos exercícios contém um pedaço de código que pode ser utilizada p
 
 **Dicas:**
 
-Você pode começar com um programa que simplesmente imprime os números de 1 a 7, na qual você pode derivar algumas modificações no exemplo de impressão de números dado no início do capítulo aqui, onde o loop foi introduzido.
+Você pode começar com um programa que simplesmente imprime os números de 1 a 7, na qual você pode derivar algumas modificações no exemplo de impressão de números dado no início do capítulo aqui, onde o _loop_ foi introduzido.
 
 Agora, considere a equivalência entre números e cadeias em um `hash` de caracteres. Você pode ir de 1 para 2 adicionando 1 (`+ = 1`). Você pode ir de "#" para "##", adicionando um caractere (`+ = "#"`). Assim, a solução pode acompanhar de perto o número, de impressão do programa.
 
@@ -520,7 +552,7 @@ Quando o programa estiver funcionando, modifique-o para imprimir `FizzBuzz` para
 
 **Dica:**
 
-Interar sobre os números é trabalho claro de um loop, e selecionar o que imprimir é uma questão de execução condicional. Lembre-se do truque de usar o operador restante (`%`) para verificar se um número é divisível por outro número (terá zero de resto).
+Interar sobre os números é trabalho claro de um _loop_, e selecionar o que imprimir é uma questão de execução condicional. Lembre-se do truque de usar o operador restante (`%`) para verificar se um número é divisível por outro número (terá zero de resto).
 
 Na primeira versão, existem três resultados possíveis para cada número, então você irá criar uma cadeia de `if/else if/else`.
 
@@ -554,8 +586,8 @@ A sequência pode ser construída iniciando vazia ("") e repetidamente adicionan
 
 Utilize `console.log` para visualizar a saída do seu programa.
 
-Para trabalhar com duas dimensões, você irá precisar de um loop dentro de outro loop. Coloque entre chaves os "corpos" dos loops para se tornar mais fácil de visualizar quando inicia e quando termina. Tente recuar adequadamente esses "corpos". A ordem dos loops deve seguir a ordem que usamos para construir a string (linha por linha, esquerda para direita, cima para baixo). Então o loop mais externo manipula as linhas e o loop interno manipula os caracteres por linha.
+Para trabalhar com duas dimensões, você irá precisar de um _loop_ dentro de outro _loop_. Coloque entre chaves os "corpos" dos _loop_s para se tornar mais fácil de visualizar quando inicia e quando termina. Tente recuar adequadamente esses "corpos". A ordem dos _loop_s deve seguir a ordem que usamos para construir a string (linha por linha, esquerda para direita, cima para baixo). Então o _loop_ mais externo manipula as linhas e o _loop_ interno manipula os caracteres por linha.
 
 Você vai precisar de duas variáveis para acompanhar seu progresso. Para saber se coloca um espaço ou um "#" em uma determinada posição, você pode testar se a soma dos dois contadores ainda é divisível por (`% 2`).
 
-Encerrando uma linha com um caracter de nova linha acontece após a linha de cima ser construída, faça isso após o loop interno, mas dentro do loop externo.
+Encerrando uma linha com um caracter de nova linha acontece após a linha de cima ser construída, faça isso após o _loop_ interno, mas dentro do _loop_ externo.
