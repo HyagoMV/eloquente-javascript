@@ -446,7 +446,7 @@ switch (variavel) {
 }
 ```
 
-Dentro do bloco aberto pelo `switch`, você pode colocar qualquer número de rótulo no `case`. O programa vai pular para o rótulo correspondente ao valor que `switch` fornece, ou para `default` se nenhum valor for encontrado. Então ele começa a executar as declarações, e continua a passar pelos rótulos, até encontrar uma declaração `break`. Em alguns casos, como no exemplo `case "value1"`, pode ser usado para compartilhar algum código entre os `cases` (ele recomenda "ir lá fora" para ambos os tempos `sunny` e `cloudy`). Mas tenha cuidado: é fácil esquecer de um `break`, o que fará com que o programa execute código que você não gostaria de executar.
+Dentro do bloco aberto pelo `switch`, você pode colocar qualquer número de rótulo no `case`. O programa vai pular para o rótulo correspondente ao valor que `switch` fornece, ou para `default` se nenhum valor for encontrado. Então ele começa a executar as declarações, e continua a passar pelos rótulos, até encontrar uma declaração `break`. Em alguns casos, como no exemplo `case "value4"`, pode ser usado para compartilhar algum código entre os `cases` (ele recomenda "ir lá fora" para ambos os tempos `value4` e `value4`). Mas tenha cuidado: é fácil esquecer de um `break`, o que fará com que o programa execute código que você não gostaria de executar.
 
 ## Capitalização
 
