@@ -565,7 +565,7 @@ Escreva um programa que cria uma `string` que representa uma grade 8x8, usando n
 Passando esta `string` para o `console.log` deve mostrar algo como isto:
 ```
   # # # #
-   # # # #
+    # # # #
   # # # #
    # # # #
   # # # #

@@ -10,11 +10,11 @@ Os programas que construímos até agora foram seriamente limitados devido ao fa
 
 O capítulo irá trabalhar com um exemplo de programação mais ou menos realista, introduzindo conceitos a medida em que eles se aplicam ao problema em questão. O código de exemplo será, muitas vezes, construído em cima de funções e variáveis ​​que foram apresentadas no início do texto.
 
-## O Esquilo-homem
+## O Homem-Esquilo
 
 De vez em quando, geralmente entre oito e dez da noite, Jacques se transforma em um pequeno roedor peludo com uma cauda espessa.
 
-Por um lado, Jacques fica muito contente por não ter licantropia clássica. Transformar-se em um esquilo tende a causar menos problemas do que se transformar em um lobo. Ao invés de ter que se preocupar em comer acidentalmente o vizinho (isso seria bem estranho), ele tem que se preocupar em não ser comido pelo gato do vizinho. Após duas ocasiões em que ele acordou nu, desorientado e em cima de um galho fino na copa de uma árvore, ele resolveu trancar as portas e as janelas do seu quarto durante a noite e colocar algumas nozes no chão para manter-se ocupado.
+Por um lado, Jacques fica muito contente por não ser licantropia clássica. Transformar-se em um esquilo tende a causar menos problemas do que se transformar em um lobo. Ao invés de ter que se preocupar em comer acidentalmente o vizinho, ele tem que se preocupar em não ser comido pelo gato do vizinho. Após duas ocasiões em que ele acordou nú, desorientado e em cima de um galho fino na copa de uma árvore, ele resolveu trancar as portas e as janelas do seu quarto durante a noite e colocar algumas nozes no chão para manter-se ocupado.
 
 ![The weresquirrel](../img/weresquirrel.png)
 
@@ -22,76 +22,83 @@ Isso resolve os problemas do gato e da árvore. Mesmo assim, Jacques ainda sofre
 
 Mudando para uma abordagem mais científica, Jacques pretende começar a manter um registro diário de tudo o que ele faz e se ele se transformou. Com essas informações, ele espera ser capaz de diminuir e limitar as condições que ativam as transformações.
 
-A primeira coisa que ele deverá fazer é criar uma estrutura de dados para armazenar essas informações.
+A primeira coisa que ele deverá fazer é criar uma __estrutura de dados__ para armazenar essas informações.
 
 ## Conjuntos de dados
 
-Para trabalhar com um pedaço de dados digitais, primeiramente precisamos encontrar uma maneira de representá-los na memória da nossa máquina. Vamos dizer que, como um exemplo simples, queremos representar a coleção de números: 2, 3, 5, 7 e 11.
+Para trabalhar com um pedaço de dados digitais, primeiramente precisamos encontrar uma maneira de representá-los na memória da nosso computador. Vamos dizer que, como um exemplo simples, queremos representar a coleção de números: 2, 3, 5, 7 e 11.
 
-Poderíamos ser criativos com _strings_ (elas podem ter qualquer tamanho, assim podemos armazenar muitos dados nelas) e usar `"2 3 5 7 11"` como nossa representação. Entretanto, isso é estranho, pois você teria que, de alguma forma, extrair os dígitos e convertê-los em números para poder acessá-los.
+Poderíamos ser criativos com _strings_ (elas podem ter qualquer tamanho, assim podemos armazenar muitos números) e usar `"2 3 5 7 11"` como nossa representação. Entretanto, isso é estranho, pois você teria que, de alguma forma, extrair os dígitos e convertê-los em números para poder acessá-los.
 
 Felizmente, o JavaScript fornece um tipo de dado específico para armazenar uma sequências de valores. Ele é chamado de _array_ e é escrito como uma lista de valores separados por vírgulas e entre colchetes.
 
 ```js
-var listOfNumbers = [2, 3, 5, 7, 11];
-console.log(listOfNumbers[1]);
+var listaDeNumeros = [2, 3, 5, 7, 11];
+console.log(listaDeNumeros[1]);
 // → 3
-console.log(listOfNumbers[1 - 1]);
+console.log(listaDeNumeros[1 - 1]); // [0]
 // → 2
 ```
 
 A notação para acessar elementos contidos em um _array_ também usa colchetes. Um par de colchetes imediatamente após uma expressão, contendo outra expressão entre esses colchetes, irá procurar o elemento contido na expressão à esquerda que está na posição dada pelo _índice_ determinado pela expressão entre colchetes.
 
-###### Indexação de Arrays
+## Indexação de Arrays
 
-O primeiro índice de um _array_ é o número zero e não o número um. Portanto, o primeiro elemento pode ser acessado usando `listOfNumbers[0]`. Se você não tem experiência com programação, essa convenção pode levar um tempo para se acostumar. Mesmo assim, a contagem baseada em zero é uma tradição de longa data no mundo da tecnologia e, desde que seja seguida consistentemente (que é o caso no JavaScript), ela funciona bem.
+O primeiro índice de um _array_ é o __número zero__ e não o número um. Portanto, o primeiro elemento pode ser acessado usando `listaDeNumeros[0]`. Se você não tem experiência com programação, essa convenção pode levar um tempo para ser absorvida. Mesmo assim, a contagem baseada em zero é uma tradição de longa data no mundo da tecnologia e, desde que seja seguida consistentemente (que é o caso no JavaScript), ela funcionará muito bem.
 
 ## Propriedades
 
-Nós vimos, em exemplos anteriores, algumas expressões de aparência suspeita, como `myString.length` (para acessar o tamanho de uma _string_) e `Math.max` (função que retorna o valor máximo). Essas são expressões que acessam uma propriedade em algum valor. No primeiro caso, acessamos a propriedade `length` do valor contido em `myString`. No segundo, acessamos a propriedade chamada `max` no objeto `Math` (que é um conjunto de valores e funções relacionados à matemática).
+Nós vimos, em exemplos anteriores, algumas expressões de aparência suspeita, como `myString.length` - que diz quantos caracteres uma _string_ possui) e `Math.max` - uma função que retorna maior número dentro os fornecidos. Essas são expressões que acessam uma propriedade em algum objeto. No primeiro caso, acessamos a propriedade `length` no objeto contido em `myString`. No segundo, acessamos a propriedade chamada `max` no objeto `Math` - que representa valores e funções relacionados à matemática.
 
-Praticamente todos os valores no JavaScript possuem propriedades. As únicas exceções são `null` e `undefined`. Se você tentar acessar a propriedade em algum deles, você receberá um erro.
+Praticamente todos os objetos no JavaScript possuem propriedades. As únicas exceções são `null` e `undefined`. Se você tentar acessar a propriedade em algum deles, você receberá um erro.
 
 ```js
 null.length;
 // → TypeError: Cannot read property 'length' of null
 ```
 
-As duas formas mais comuns de acessar propriedades no JavaScript são usando ponto e colchetes. Ambos `value.x` e `value[x]` acessam uma propriedade em `value`, mas não necessariamente a mesma propriedade. A diferença está em como o `x` é interpretado. Quando usamos o ponto, a parte após o ponto deve ser um nome de variável válido e referente ao nome da propriedade em questão. Quando usamos colchetes, a expressão entre os colchetes é avaliada para obter o nome da propriedade. Enquanto que `value.x` acessa a propriedade chamada "x", `value[x]` tenta avaliar a expressão `x` e, então, usa o seu resultado como o nome da propriedade.
+As duas formas mais comuns de acessar propriedades no JavaScript são usando ponto e colchetes. Ambos `obj.x` e `obj[x]` acessam uma propriedade em `obj`, __mas não necessariamente a mesma propriedade__. A diferença está em como o `x` é interpretado. Quando usamos o ponto, o que deve vim após o ponto é um __nome de variável válida__. Quando usamos colchetes, a expressão entre os colchetes, `[x]`, é avaliada para obter o nome da propriedade. Enquanto que `obj.x` acessa a propriedade chamada "x", `obj[x]` tenta avaliar a expressão `x` e, então, usa o resultado como o nome da propriedade.
 
-Portanto, se você sabe que a propriedade que você está interessado se chama "length", você usa `value.length`. Se você deseja extrair a propriedade cujo nome é o valor que está armazenado na variável `i`, você usa `value[i]`. Devido ao fato de que nomes de propriedades podem ser qualquer _string_, se você quiser acessar as propriedades "2" ou "John Doe", você deve usar os colchetes: `value[2]` ou `value["John Doe"]`, pois mesmo sabendo exatamente o nome da propriedade, "2" e "John Doe" não são nomes válidos de variáveis, sendo impossível acessá-los usando a notação com o ponto.
-
+Portanto, se você sabe que a propriedade que você está interessado se chama _length_, você usa `obj.length`. Se você deseja extrair o valor de uma propriedade cujo nome está armazenado na variável `i`, você usa `obj[i]`. Devido ao fato que nomes de propriedades podem ser qualquer _string_, se você quiser acessar as propriedades "2" ou "John Doe", você __obrigado a usar os colchetes__: `obj[2]` ou `obj["John Doe"]`, pois mesmo sabendo exatamente o nome da propriedade, "2" e "John Doe" __não são nomes de variáveis válidas__, sendo impossível acessá-los usando a notação com o ponto.
+'
 ## Métodos
 
-Ambos os objetos _string_ e _array_ possuem, além da propriedade `length`, um número de propriedades que se referem à valores de função.
+Ambos os objetos _string_ e _array_ possuem, além da propriedade `length`, outras propriedades que se referem à funções.
 
 ```js
 var doh = "Doh";
+
 console.log(typeof doh.toUpperCase);
 // → function
+
 console.log(doh.toUpperCase());
 // → DOH
 ```
 
-Toda _string_ possui uma propriedade `toUpperCase`. Quando chamada, ela retornará uma cópia da string com todas as letras convertidas para maiúsculas. Existe também a propriedade `toLowerCase`, que você já pode imaginar o que faz.
+Toda _string_ possui uma propriedade `toUpperCase`. Quando invocada, ela retornará uma cópia da string com todas as letras convertidas para maiúsculas. Existe também a propriedade `toLowerCase`, que converte as letra para minúsculas.
 
-Curiosamente, mesmo que a chamada para `toUpperCase` não passe nenhum argumento, de alguma forma a função tem acesso à _string_ `"Doh"`, que é o valor em que a propriedade foi chamada. Como isso funciona exatamente é descrito no [Capítulo 6](./06-a-vida-secreta-dos-objetos.md).
+Curiosamente, mesmo que a invocação para `toUpperCase` não passe nenhum argumento e de alguma forma a função tem acesso à _string_ `"Doh"`, que é o valor em que a propriedade `toUpperCase` foi invocada. Como isso funciona exatamente é descrito no [Capítulo 6 - A vida secreta dos objetos](./06-a-vida-secreta-dos-objetos.md).
 
-As propriedades que contêm funções são geralmente chamadas de _métodos_ do valor a que pertencem. Como por exemplo, "`toUpperCase` é um método de uma _string_".
+As propriedades de um objeto que armazenam funções são chamadas de __métodos__. Como por exemplo, `toUpperCase` é um método da _string_ `"Doh"`.
 
 O exemplo a seguir demonstra alguns métodos que os objetos do tipo _array_ possuem:
 
 ```js
-var mack = [];
-mack.push("Mack");
-mack.push("the", "Knife");
-console.log(mack);
+var frase = [];
+
+frase.push("Mack");
+frase.push("the", "Knife");
+
+console.log(frase);
 // → ["Mack", "the", "Knife"]
-console.log(mack.join(" "));
+
+console.log(frase.join(" "));
 // → Mack the Knife
-console.log(mack.pop());
+
+console.log(frase.pop());
 // → Knife
-console.log(mack);
+
+console.log(frase);
 // → ["Mack", "the"]
 ```
 
@@ -99,41 +106,60 @@ O método `push` pode ser usado para adicionar valores ao final de um _array_. O
 
 ## Objetos
 
-Voltando ao esquilo-homem. Um conjunto de registros diários pode ser representado como um _array_. Entretanto, as entradas não são compostas apenas por um número ou uma _string_, pois precisam armazenar a lista de atividades e um valor booleano que indica se Jacques se transformou em um esquilo. Nós deveríamos, idealmente, agrupar esses valores em um único valor e, em seguida, colocá-los em um _array_ com os registros.
+Voltando ao homem-esquilo. Um conjunto de registros diários pode ser representado como um _array_. Entretanto, as entradas não são compostas apenas por um número ou uma _string_, pois precisam armazenar a lista de atividades e um valor booleano que indica se Jacques se transformou em um esquilo. Nós deveríamos, idealmente, agrupar esses valores em um único valor e, em seguida, colocá-los em um _array_ de registros.
 
-Valores do tipo _objeto_ são coleções arbitrárias de propriedades, sendo que podemos adicionar ou remover essas propriedades da forma que desejarmos. Uma maneira de criar um objeto é usando a notação com chaves.
+Valores do tipo __objeto__ são coleções arbitrárias de propriedades, sendo que podemos __adicionar__ e __remover__ essas propriedades da forma que desejarmos. 
+
+Uma maneira de criar um objeto é usando a notação com chaves.
 
 ```js
 var day1 = {
   squirrel: false,
-  events: ["work", "touched tree", "pizza", "running",
-           "television"]
+  events: ["work", "touched tree", "pizza", "running", "television"]
 };
+
 console.log(day1.squirrel);
 // → false
+
 console.log(day1.wolf);
 // → undefined
+
 day1.wolf = false;
 console.log(day1.wolf);
 // → false
 ```
 
-Dentro das chaves, podemos informar uma lista de propriedades separadas por vírgulas. Cada propriedade é escrita com um nome seguido de dois pontos e uma expressão que fornece o valor da propriedade. Espaços e quebras de linha não fazem diferença. Quando um objeto se estende por várias linhas, indentá-lo, como mostrado no exemplo anterior, melhora a legibilidade. Propriedades cujos nomes não são variáveis ou números válidos precisam estar entre aspas.
+Dentro das chaves, podemos informar uma lista de propriedades __separadas por vírgulas__. Cada propriedade é escrita com um __nome seguido de dois pontos__ e uma __expressão que fornecerá o valor da propriedade__. Espaços e quebras de linha não fazem diferença. Quando um objeto se estende por várias linhas, indentá-lo, como mostrado no exemplo anterior, melhora a legibilidade. 
+
+Propriedades cujos nome são números ou variáveis inválidas precisam estar entre aspas.
 
 ```js
 var descriptions = {
   work: "Went to work",
-  "touched tree": "Touched a tree"
+  "touched tree": "Touched a tree",
+  "7": "Sete"
 };
 ```
 
 Isso significa que as chaves possuem dois significados no JavaScript. Quando usadas no início de uma declaração, elas definem o começo de um bloco de declarações. Em qualquer outro caso, elas descrevem um objeto. Felizmente, é praticamente inútil iniciar uma declaração com as chaves de um objeto e, em programas normais, não existe ambiguidade entre os dois casos de uso.
 
-Tentar acessar uma propriedade que não existe irá produzir um valor `undefined`, o que acontece quando tentamos ler pela primeira vez a propriedade `wolf` no exemplo anterior.
+Se tentarmos acessar uma propriedade que não existe irá produzir um valor `undefined`, foi o que aconteceu quando tentamos ler pela primeira vez a propriedade `wolf`. 
 
-É possível atribuir um valor a uma propriedade usando o operador `=`. Isso irá substituir o valor de uma propriedade, caso ela exista, ou criar uma nova propriedade no objeto se não existir.
+```js 
+// Está propriedade ainda não existe
+console.log(day1.wolf);
+// → undefined
+```
 
-Retornando brevemente ao nosso modelo de tentáculos para associações de variáveis, as associações de propriedades funcionam de forma similar. Elas _recebem_ valores, mas outras variáveis e propriedades podem também estar associadas aos mesmos valores. Você pode pensar em objetos como polvos com um número qualquer de tentáculos, e cada tentáculo com um nome escrito nele.
+É possível atribuir um valor a uma propriedade usando o operador de atribuição `=`. Isso irá __substituir o valor__ de uma propriedade, caso ela exista, ou __criar uma nova__ propriedade no objeto, caso não existir.
+
+```js 
+day1.wolf = false;
+console.log(day1.wolf);
+// → false
+```
+
+Retornando brevemente ao nosso modelo de tentáculos para associações de variáveis, as associações de propriedades funcionam de forma similar. Elas __recebem__ valores, mas outras variáveis e propriedades podem também estar associadas aos mesmos valores. Você pode pensar em objetos como polvos com um número qualquer de tentáculos, e cada tentáculo com um nome escrito nele.
 
 ![A representação artística de um objeto](../img/octopus-object.jpg)
 
@@ -141,20 +167,24 @@ O operador `delete` corta um tentáculo de nosso polvo. Ele é um operador unár
 
 ```js
 var anObject = {left: 1, right: 2};
+
 console.log(anObject.left);
 // → 1
+
 delete anObject.left;
 console.log(anObject.left);
 // → undefined
+
 console.log("left" in anObject);
 // → false
+
 console.log("right" in anObject);
 // → true
 ```
 
-O operador binário `in`, quando aplicado a uma _string_ ou a um objeto, retorna um valor booleano que indica se aquele objeto possui aquela propriedade. A diferença entre alterar uma propriedade para `undefined` e removê-la de fato, é que no primeiro caso, o objeto _continua com a propriedade_ (ela simplesmente não tem um valor muito interessante), enquanto que no segundo caso, a propriedade não estará mais presente no objeto e o operador `in` retornará `false`.
+O operador binário `in`, quando aplicado a uma _string_ ou a um objeto, retorna um valor booleano que indica se aquele objeto possui aquela propriedade. A diferença entre alterar uma propriedade para `undefined` e removê-la de fato, é que no primeiro caso, o objeto __continua com a propriedade__, enquanto que no segundo caso, a propriedade não estará mais presente no objeto e o operador `in` retornará `false`.
 
-Os _arrays_ são, então, apenas um tipo especializado de objeto para armazenar sequências de coisas. Se você executar `typeof [1, 2]`, irá produzir `"object"`. Você pode interpretá-los como polvos com longos tentáculos de tamanhos semelhantes, ordenados em linha e rotulados com números.
+Os _arrays_ são, então, apenas um tipo especializado de objeto para armazenar sequências de dados. Se você executar `typeof [1, 2]`, irá produzir `"object"`. Você pode interpretá-los como polvos com longos tentáculos de tamanhos semelhantes, ordenados em linha e rotulados com números.
 
 ![A representação artística de um array](../img/octopus-array.jpg)
 
@@ -177,13 +207,15 @@ var journal = [
 
 ## Mutabilidade
 
-Nós iremos chegar na programação de fato muito em breve. Mas há, primeiramente, uma última parte teórica que precisamos entender.
+Nós iremos chegar na programação de fato muito em breve. Mas primeiramente, uma última parte teórica que precisamos entender.
 
-Nós vimos que os valores de objetos podem ser modificados. Os tipos de valores discutidos nos capítulos anteriores, tais como números, _strings_ e booleanos, são _imutáveis_. É impossível mudar o valor já existente desses tipos. Você pode, a partir deles, combiná-los e criar novos valores, mas quando você analisar um valor específico de _string_, ele será sempre o mesmo, sendo que o seu texto não pode ser alterado. Por exemplo, se você tiver referência a uma _string_ que contêm `"cat"`, é impossível que outro código altere os caracteres dessa _string_ para `"rat"`.
+Nós vimos que os valores de objetos podem ser modificados. Os tipos de valores discutidos nos capítulos anteriores, tais como números, _strings_ e booleanos, são _imutáveis_. É impossível mudar o valor já existente desses tipos. Você pode, a partir deles, combiná-los e criar novos valores, mas quando você analisar um valor específico em uma _string_, ela será sempre a mesma, sendo que o seu texto não pode ser alterado. Por exemplo, se você tiver referência a uma _string_ que contêm `"cat"`, é __impossível__ que outro código altere os caractere dessa _string_, exemplo,  `"rat"`.
 
 Por outro lado, no caso de objetos, o conteúdo de um valor pode ser modificado quando alteramos suas propriedades.
 
-Quando temos dois números, 120 e 120, podemos considerá-los exatamente o mesmo número, quer se refiram ou não aos mesmos bits físicos. Entretanto, no caso de objetos há uma diferença entre ter duas referências para o mesmo objeto e ter dois objetos diferentes que possuem as mesmas propriedades. Considere o código a seguir:
+Quando temos dois números, 120 e 120, podemos considerá-los exatamente o mesmo número, quer se refiram ou não aos mesmos _bits_ físicos. Entretanto, no caso de objetos há uma diferença entre __ter duas referências para o mesmo objeto__ e __ter dois objetos diferentes que possuem as mesmas propriedades__. 
+
+Considere o código a seguir:
 
 ```js
 var object1 = {value: 10};
@@ -192,19 +224,21 @@ var object3 = {value: 10};
 
 console.log(object1 == object2);
 // → true
+
 console.log(object1 == object3);
 // → false
 
 object1.value = 15;
 console.log(object2.value);
 // → 15
+
 console.log(object3.value);
 // → 10
 ```
 
-As variáveis `object1` e `object2` estão associadas ao _mesmo objeto_ e, por isso, alterar `object1` também altera o valor de `object2`. A variável `object3` aponta para um objeto diferente, o qual inicialmente contêm as mesmas propriedades de `object1` e sua existência é totalmente separada.
+As variáveis `object1` e `object2` estão referênciando o __mesmo objeto__ e, por isso, alterar o objeto referênciando em `object1` também altera o objeto referênciando em `object2`. A variável `object3` aponta para um outro objeto, o qual inicialmente contêm as mesmas propriedades de `object1` e sua existência é totalmente separada.
 
-Quando comparamos objetos, o operador `==` do JavaScript irá retornar `true` apenas se ambos os objetos possuem exatamente o mesmo valor. Comparar objetos diferentes irá retornar `false` mesmo se eles tiverem conteúdos idênticos. Não existe uma operação nativa no JavaScript de _"deep" comparison_ (comparação "profunda"), onde se verifica o conteúdo de um objeto, mas é possível escrevê-la você mesmo (que será um dos [exercícios](#deep-comparison) ao final desse capítulo).
+Quando comparamos objetos, o operador de igualdade `==` do JavaScript irá retornar `true` apenas se ambos os objetos possuem exatamente o mesmo valor. Comparar objetos diferentes irá retornar `false` mesmo se eles tiverem conteúdos idênticos. Não existe uma operação nativa no JavaScript de _deep comparison_ - comparação "profunda", onde se verifica o conteúdo de um objeto, mas é possível escrevê-la você mesmo (que será um dos [exercícios](#deep-comparison) ao final desse capítulo).
 
 ## O _log_ da licantropia
 
@@ -306,7 +340,7 @@ Agora temos as ferramentas necessárias para calcular correlações individuais.
 
 ## Objetos como mapas
 
-Uma maneira possível é armazenar todas as correlações em um _array_, usando objetos com as propriedades `name` (nome) e `value` (valor). Porém, isso faz com que o acesso às correlações de um evento seja bastante trabalhoso, pois você teria que percorrer por todo o _array_ para achar o objeto com o `name` certo. Poderíamos encapsular esse processo de busca em uma função e, mesmo assim, iríamos escrever mais código e o computador iria trabalhar mais do que o necessário.
+Uma maneira possível é armazenar todas as correlações em um _array_, usando objetos com as propriedades `name` (nome) e `obj` (valor). Porém, isso faz com que o acesso às correlações de um evento seja bastante trabalhoso, pois você teria que percorrer por todo o _array_ para achar o objeto com o `name` certo. Poderíamos encapsular esse processo de busca em uma função e, mesmo assim, iríamos escrever mais código e o computador iria trabalhar mais do que o necessário.
 
 Uma maneira melhor seria usar as propriedades do objeto nomeadas de acordo com o tipo do evento. Podemos usar a notação de colchetes para acessar e ler as propriedades e, além disso, usar o operador `in` para testar se tal propriedade existe.
 
@@ -623,7 +657,7 @@ console.log(window.myVar);
 
 Objetos e _arrays_ (que são tipos específicos de objetos) fornecem maneiras de agrupar um conjunto de valores em um único valor. Conceitualmente, ao invés de tentar carregar e manter todas as coisas individualmente em nossos braços, eles nos permitem colocar e carregar todas as coisas relacionadas dentro de uma bolsa.
 
-Com exceção de `null` e `undefined`, a maioria dos valores no JavaScript possuem propriedades e são acessados usando `value.propName` ou `value["propName"]`. Objetos tendem a usar nomes para suas propriedades e armazenam mais o menos uma quantidade fixa delas. Por outro lado, os _Arrays_ normalmente contêm quantidades variáveis de valores conceitualmente iguais e usam números (iniciando do zero) como os nomes de suas propriedades.
+Com exceção de `null` e `undefined`, a maioria dos valores no JavaScript possuem propriedades e são acessados usando `obj.propName` ou `obj["propName"]`. Objetos tendem a usar nomes para suas propriedades e armazenam mais o menos uma quantidade fixa delas. Por outro lado, os _Arrays_ normalmente contêm quantidades variáveis de valores conceitualmente iguais e usam números (iniciando do zero) como os nomes de suas propriedades.
 
 Existem algumas propriedades com nomes específicos nos _arrays_, como `length` e uma série de métodos. Métodos são funções que são armazenadas em propriedades e, normalmente, atuam no valor nas quais elas são propriedade.
 
@@ -743,9 +777,9 @@ Para percorrer uma lista (no caso de `listToArray` e `nth`), o seguinte loop `fo
 for (var node = list; node; node = node.rest) {}
 ```
 
-Você consegue ver como isso funcionaria? A cada iteração do loop, `node` aponta para a próxima sublista e, por isso, o corpo da função pode acessar a propriedade `value` para pegar o elemento atual. Ao final de cada iteração, `node` é atualizado apontando para a próxima sublista. Quando seu valor é `null`, nós chegamos ao final da lista e o loop é finalizado.
+Você consegue ver como isso funcionaria? A cada iteração do loop, `node` aponta para a próxima sublista e, por isso, o corpo da função pode acessar a propriedade `obj` para pegar o elemento atual. Ao final de cada iteração, `node` é atualizado apontando para a próxima sublista. Quando seu valor é `null`, nós chegamos ao final da lista e o loop é finalizado.
 
-A versão recursiva de `nth` irá, similarmente, olhar para uma parte ainda menor do _tail_ (final) da lista e, ao mesmo tempo, fazer a contagem regressiva do índice até que chegue ao zero, significando que é o ponto no qual ela pode retornar a propriedade `value` do nó que está sendo verificado. Para acessar o elemento na posição zero de uma lista, você pode simplesmente acessar a propriedade `value` do seu nó _head_ (inicial). Para acessar o elemento `N + 1`, você pega o n-ésimo elemento da lista que está contido na propriedade `rest` da lista em questão.
+A versão recursiva de `nth` irá, similarmente, olhar para uma parte ainda menor do _tail_ (final) da lista e, ao mesmo tempo, fazer a contagem regressiva do índice até que chegue ao zero, significando que é o ponto no qual ela pode retornar a propriedade `obj` do nó que está sendo verificado. Para acessar o elemento na posição zero de uma lista, você pode simplesmente acessar a propriedade `obj` do seu nó _head_ (inicial). Para acessar o elemento `N + 1`, você pega o n-ésimo elemento da lista que está contido na propriedade `rest` da lista em questão.
 
 ### Comparação "profunda"
 
