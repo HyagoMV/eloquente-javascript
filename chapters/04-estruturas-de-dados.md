@@ -77,7 +77,7 @@ console.log(doh.toUpperCase());
 
 Toda _string_ possui uma propriedade `toUpperCase`. Quando invocada, ela retornará uma cópia da string com todas as letras convertidas para maiúsculas. Existe também a propriedade `toLowerCase`, que converte as letra para minúsculas.
 
-Curiosamente, mesmo que a invocação para `toUpperCase` não passe nenhum argumento e de alguma forma a função tem acesso à _string_ `"Doh"`, que é o valor em que a propriedade `toUpperCase` foi invocada. Como isso funciona exatamente é descrito no [Capítulo 6 - A vida secreta dos objetos](./06-a-vida-secreta-dos-objetos.md).
+Curiosamente, mesmo que a invocação para `toUpperCase` não passe nenhum argumento e de alguma forma a função tem acesso à _string_ `"Doh"`, que é o valor em que a propriedade `toUpperCase` foi invocada. Como isso funciona exatamente é descrito no [Capítulo 6](./06-a-vida-secreta-dos-objetos.md).
 
 As propriedades de um objeto que armazenam funções são chamadas de __métodos__. Como por exemplo, `toUpperCase` é um método da _string_ `"Doh"`.
 
@@ -268,9 +268,11 @@ addEntry(["weekend", "cycling", "break", "peanuts",
 
 Uma vez que ele tem dados suficientes, ele pretende calcular a correlação entre sua transformação em esquilo e cada um dos eventos do dia e espera aprender algo útil a partir dessas correlações.
 
-A _correlação_ é uma medida de dependência entre variáveis ("variáveis" no sentido estatístico e não no sentido do JavaScript). Ela é geralmente expressa em um coeficiente que varia de -1 a 1. Zero correlação significa que as variáveis não são relacionadas, enquanto que a correlação de um indica que as variáveis são perfeitamente relacionadas (se você conhece uma, você também conhece a outra). A correlação negativa de um também indica que as variáveis são perfeitamente relacionadas, mas são opostas (quando uma é verdadeira, a outra é falsa).
+A _correlação_ é uma medida de dependência entre variáveis ( não são as "variáveis" do JavaScript). Ela é geralmente expressa em um coeficiente que varia de -1 a 1. Zero correlação significa que as variáveis não são relacionadas, enquanto que a correlação de um indica que as variáveis são perfeitamente relacionadas (se você conhece uma, você também conhece a outra). A correlação negativa de um também indica que as variáveis são perfeitamente relacionadas, mas são opostas (quando uma é verdadeira, a outra é falsa).
 
-Para variáveis binárias (booleanos), o coeficiente _phi_ (_ϕ_) fornece uma boa forma de medir a correlação e é relativamente fácil de ser calculado. Para calcular _ϕ_, precisamos de uma tabela _n_ que contêm o número de vezes que as diversas combinações das duas variáveis foram observadas. Por exemplo, podemos considerar o evento de "comer pizza" e colocá-lo nessa tabela da seguinte maneira:
+Para variáveis binárias (booleanos), o coeficiente _phi_ (_ϕ_) fornece uma boa forma de medir a correlação e é relativamente fácil de ser calculado. Para calcular _ϕ_, precisamos de uma tabela _n_ que contêm o número de vezes que as diversas combinações das duas variáveis foram observadas. 
+
+Por exemplo, podemos considerar o evento de "comer pizza" e colocá-lo nessa tabela da seguinte maneira:
 
 ![Comendo Pizza x transformar-se em esquilo](../img/pizza-squirrel.png)
 
@@ -289,7 +291,7 @@ Portanto, para a tabela de pizza, a parte de cima da linha (o dividendo) seria 1
 
 ## Calculando a correlação
 
-No JavaScript, podemos representar uma tabela dois por dois usando um _array_ com quatro elementos (`[76, 9, 4, 1]`). Podemos também usar outras formas de representações, como por exemplo um _array_ contendo dois _arrays_ com dois elementos cada (`[[76, 9], [4, 1]]`), ou até mesmo um objeto com propriedades nomeadas de `"11"` e `"01"`. Entretanto, a maneira mais simples e que faz com que seja mais fácil acessar os dados é utilizando um _array_ com quatro elementos. Nós iremos interpretar os índices do _array_ como elementos binários de dois bits, onde o dígito a esquerda (mais significativo) se refere à variável do esquilo, e o dígito a direita (menos significativo) se refere à variável do evento. Por exemplo, o número binário `10` se refere ao caso no qual Jacques se tornou um esquilo, mas o evento não ocorreu (por exemplo "pizza"). Isso aconteceu quatro vezes, e já que o número binário `10` é equivalente ao número 2 na notação decimal, iremos armazenar esse valor no índice 2 do _array_.
+No JavaScript, podemos representar uma tabela 2 X 2 usando um _array_ com quatro elementos (`[76, 9, 4, 1]`). Podemos também usar outras formas de representações, como por exemplo, um _array_ contendo dois _arrays_ com dois elementos cada (`[[76, 9], [4, 1]]`), ou até mesmo um objeto com propriedades nomeadas de `"11"` e `"01"`. Entretanto, a maneira mais simples e mais fácil de acessar os dados é utilizando um _array_ com quatro elementos. Nós iremos interpretar os índices do _array_ como elementos binários de dois bits, onde o dígito a esquerda (mais significativo) se refere à variável do esquilo, e o dígito a direita (menos significativo) se refere à variável do evento. Por exemplo, o número binário `10` se refere ao caso no qual Jacques se tornou um esquilo, mas o evento não ocorreu (por exemplo "pizza"). Isso aconteceu quatro vezes, e já que o número binário `10` é equivalente ao número 2 na notação decimal, iremos armazenar esse valor no índice 2 do _array_.
 
 Essa é a função que calcula o coeficiente _ϕ_ de um _array_ desse tipo:
 
@@ -310,7 +312,7 @@ Essa é simplesmente uma tradução direta da fórmula de _ϕ_ para o JavaScript
 
 Jacques manteve seu diário por três meses. O conjunto de dados resultante está disponível no ambiente de código desse capítulo, armazenado na variável `JOURNAL` e em um [arquivo](http://eloquentjavascript.net/code/jacques_journal.js) que pode ser baixado.
 
-Para extrair uma tabela dois por dois de um evento específico desse diário, devemos usar um loop para percorrer todas as entradas e ir adicionando quantas vezes o evento ocorreu em relação às transformações de esquilo.
+Para extrair uma tabela 2 X 2 de um evento específico desse diário, devemos usar um loop para percorrer todas as entradas e ir adicionando quantas vezes o evento ocorreu em relação às transformações de esquilo.
 
 ```js
 function hasEvent(event, entry) {
@@ -340,7 +342,7 @@ Agora temos as ferramentas necessárias para calcular correlações individuais.
 
 ## Objetos como mapas
 
-Uma maneira possível é armazenar todas as correlações em um _array_, usando objetos com as propriedades `name` (nome) e `obj` (valor). Porém, isso faz com que o acesso às correlações de um evento seja bastante trabalhoso, pois você teria que percorrer por todo o _array_ para achar o objeto com o `name` certo. Poderíamos encapsular esse processo de busca em uma função e, mesmo assim, iríamos escrever mais código e o computador iria trabalhar mais do que o necessário.
+Uma maneira possível é armazenar todas as correlações em um _array_, usando objetos com as propriedades `chave` e `valor` . Porém, isso faz com que o acesso às correlações de um evento seja bastante trabalhoso, pois você teria que percorrer por todo o _array_ para achar o objeto com o `chave` certo. Poderíamos encapsular esse processo de busca em uma função e, mesmo assim, iríamos escrever mais código e o computador iria trabalhar mais do que o necessário.
 
 Uma maneira melhor seria usar as propriedades do objeto nomeadas de acordo com o tipo do evento. Podemos usar a notação de colchetes para acessar e ler as propriedades e, além disso, usar o operador `in` para testar se tal propriedade existe.
 
@@ -352,8 +354,10 @@ function storePhi(event, phi) {
 
 storePhi("pizza", 0.069);
 storePhi("touched tree", -0.081);
+
 console.log("pizza" in map);
 // → true
+
 console.log(map["touched tree"]);
 // → -0.081
 ```
@@ -362,7 +366,7 @@ Um _map_ é uma maneira de associar valores de um domínio (nesse caso nomes de 
 
 Existem alguns problemas que podem ser gerados usando objetos dessa forma, os quais serão discutidos no [capítulo 6](./06-a-vida-secreta-dos-objetos.md). Por enquanto, não iremos nos preocupar com eles.
 
-E se quiséssemos encontrar todos os eventos nos quais armazenamos um coeficiente? Diferentemente de um _array_, as propriedades não formam uma sequência previsível, impossibilitando o uso de um loop `for` normal. Entretanto, o JavaScript fornece uma construção de loop específica para percorrer as propriedades de um objeto. Esse loop é parecido com o loop `for` e se distingue pelo fato de utilizar a palavra `in`.
+E se quiséssemos encontrar todos os eventos nos quais armazenamos um coeficiente? Diferentemente de um _array_, as propriedades não formam uma sequência previsível, impossibilitando o uso de um _loop_ `for` normal. Entretanto, o JavaScript fornece uma construção de _loop_ específica para percorrer as propriedades de um objeto. Esse _loop_ é parecido com o _loop_ `for` e se distingue pelo fato de utilizar a palavra `in`.
 
 ```js
 for (var event in map)
@@ -374,7 +378,7 @@ for (var event in map)
 
 ## A análise final
 
-Para achar todos os tipos de eventos que estão presentes no conjunto de dados, nós simplesmente processamos cada entrada e percorremos por todos os eventos presentes usando um loop. Mantemos um objeto chamado `phis` que contém os coeficientes das correlações de todos os tipos de eventos que foram vistos até agora. A partir do momento em que encontramos um tipo que não está presente no objeto `phis`, calculamos o valor de sua correlação e então adicionamos ao objeto.
+Para achar todos os tipos de eventos que estão presentes no conjunto de dados, nós simplesmente processamos cada entrada e percorremos por todos os eventos presentes usando um _loop_. Mantemos um objeto chamado `phis` que contém os coeficientes das correlações de todos os tipos de eventos que foram vistos até agora. A partir do momento em que encontramos um tipo que não está presente no objeto `phis`, calculamos o valor de sua correlação e então adicionamos ao objeto.
 
 ```js
 function gatherCorrelations(journal) {
@@ -454,12 +458,15 @@ Vimos no [início do capítulo](#user-content-estrutura-de-dados-objetos-e-array
 
 ```js
 var todoList = [];
+
 function rememberTo(task) {
   todoList.push(task);
 }
+
 function whatIsNext() {
   return todoList.shift();
 }
+
 function urgentlyRememberTo(task) {
   todoList.unshift(task);
 }
@@ -472,24 +479,26 @@ O método `indexOf` tem um irmão chamado `lastIndexOf`, que começa a pesquisa 
 ```js
 console.log([1, 2, 3, 2, 1].indexOf(2));
 // → 1
+
 console.log([1, 2, 3, 2, 1].lastIndexOf(2));
 // → 3
 ```
 
 Ambos `indexOf` e `lastIndexOf` recebem um segundo argumento opcional que indica onde iniciar a pesquisa.
 
-Outro método fundamental é o `slice`, que recebe um índice de início e outro de parada, retornando um _array_ que contém apenas os elementos presentes entre esses índices. O índice de início é inclusivo e o de parada é exclusivo.
+Outro método fundamental é o `slice`, que recebe um índice de início e outro de fim, retornando um _array_ que contém apenas os elementos presentes entre esses índices. O índice de início é inclusivo e o de fim é exclusivo.
 
 ```js
 console.log([0, 1, 2, 3, 4].slice(2, 4));
 // → [2, 3]
+
 console.log([0, 1, 2, 3, 4].slice(2));
 // → [2, 3, 4]
 ```
 
 Quando o índice de parada não é informado, o `slice` irá pegar todos os elementos após o índice de início. _Strings_ também possuem o método `slice` com um comportamento similar.
 
-O método `concat` pode ser usado para unir _arrays_, parecido com o que o operador `+` faz com as _strings_. O exemplo a seguir mostra ambos `concat` e `slice` em ação. Ele recebe um _array_ e um índice como argumento, retornando um novo _array_ que é uma cópia do _array_ original, exceto pelo fato de que o elemento no índice informado foi removido.
+O método `concat` pode ser usado para unir _arrays_, parecido com o que o operador de concatenação `+` faz com as _strings_. O exemplo a seguir mostra ambos `concat` e `slice` em ação. Ele recebe um _array_ e um índice como argumento, retornando um novo _array_ que é uma cópia do _array_ original, exceto pelo fato de que o elemento no índice informado foi removido.
 
 ```js
 function remove(array, index) {
@@ -506,18 +515,21 @@ Podemos ler propriedades como `length` e `toUpperCase` de _strings_. Porém, cas
 
 ```js
 var myString = "Fido";
+
 myString.myProperty = "value";
+
 console.log(myString.myProperty);
 // → undefined
 ```
 
-Valores do tipo _string_, _number_ e _Boolean_ não são objetos e, mesmo pelo fato da linguagem não reclamar quando tentamos adicionar novas propriedades neles, elas não são armazenadas. Esses valores são imutáveis e não podem ser alterados.
+Valores do tipo _string_, _number_ e _Boolean_ não são objetos e, mesmo que a linguagem não reclame quando tentamos adicionar novas propriedades neles, elas não são armazenadas. Esses valores são imutáveis e não podem ser alterados.
 
 Mesmo assim, esses tipos possuem propriedades nativas. Toda _string_ possui uma série de métodos. Provavelmente, alguns dos mais úteis são `slice` e `indexOf`, que são parecidos com os métodos de _array_ que possuem o mesmo nome.
 
 ```js
 console.log("coconuts".slice(4, 7));
 // → nut
+
 console.log("coconut".indexOf("u"));
 // → 5
 ```
@@ -540,22 +552,28 @@ Já vimos a propriedade `length` das _strings_. Para acessar caracteres individu
 
 ```js
 var string = "abc";
+                            
 console.log(string.length);
 // → 3
+
 console.log(string.charAt(0));
 // → a
+
 console.log(string[1]);
 // → b
 ```
 
-## O Objeto _Arguments_
+## O objeto _Arguments_
 
 Sempre que uma função é invocada, uma variável especial chamada `arguments` é adicionada ao ambiente no qual o corpo da função executa. Essa variável se refere a um objeto que contém todos os argumentos passados à função. Lembre-se de que no JavaScript você pode passar mais (ou menos) argumentos para uma função, independentemente do número de parâmetros que foi declarado.
 
 ```js
 function noArguments() {}
+
 noArguments(1, 2, 3); // This is okay
+
 function threeArguments(a, b, c) {}
+
 threeArguments(); // And so is this
 ```
 
@@ -587,6 +605,7 @@ function addEntry(squirrel) {
     entry.events.push(arguments[i]);
   journal.push(entry);
 }
+
 addEntry(true, "work", "touched tree", "pizza",
          "running", "television");
 ```
@@ -597,13 +616,13 @@ Essa versão lê o primeiro argumento (`squirrel`) da forma normal e depois perc
 
 Como vimos anteriormente, `Math` é uma caixa de ferramentas com funções relacionadas a números, tais como `Math.max` (máximo), `Math.min` (mínimo) e `Math.sqrt` (raiz quadrada).
 
-O objeto `Math` é usado como um _container_ para agrupar uma série de funcionalidades relacionadas. Existe apenas um único objeto `Math` e, na maioria das vezes, ele não é útil quando usado como um valor. Mais precisamente, ele fornece um _namespace_ (espaço nominal) para que todas essas funções e valores não precisem ser declaradas como variáveis globais.
+O objeto `Math` é usado como um _container_ para agrupar uma série de funcionalidades relacionadas. Existe apenas um único objeto `Math` e, na maioria das vezes, ele não é útil quando usado como um valor. Mais precisamente dele, pois fornece um _namespace_ (espaço nominal) para que todas essas funções e valores não precisem ser declaradas como variáveis globais.
 
 Possuir muitas variáveis globais "polui" o _namespace_. Quanto mais nomes são usados, mais prováveis são as chances de acidentalmente sobrescrever o valor de uma variável. Por exemplo, é provável que você queira chamar algo de `max` em um de seus programas. Sabendo que no JavaScript a função nativa `max` está contida de forma segura dentro do objeto `Math`, não precisamos nos preocupar em sobrescrevê-la.
 
 Muitas linguagens irão parar você ou, ao menos, avisá-lo quando tentar definir uma variável com um nome que já está sendo usado. Como o JavaScript não faz isso, tenha cuidado.
 
-De volta ao objeto `Math`, caso precise realizar cálculos trigonométricos, `Math` pode ajudá-lo. Ele contém `cos` (cosseno), `sin` (seno) e `tan` (tangente), tanto quanto suas funções inversas `aos`, `asin` e `atan` respectivamente. O número π (pi), ou pelo menos a aproximação que é possível ser representada através de um número no JavaScript, está disponível como `Math.PI`. (Existe uma tradição antiga na programação de escrever os nomes de valores constantes em caixa alta).
+De volta ao objeto `Math`, caso precise realizar cálculos trigonométricos, `Math` pode ajudá-lo. Ele contém `cos` (cosseno), `sin` (seno) e `tan` (tangente), tanto quanto suas funções inversas `acos`, `asin` e `atan` respectivamente. O número π (pi), ou pelo menos a aproximação que é possível ser representada através de um número no JavaScript, está disponível como `Math.PI`. (Existe uma tradição antiga na programação de escrever os nomes de valores constantes em caixa alta).
 
 ```js
 function randomPointOnCircle(radius) {
@@ -637,13 +656,49 @@ console.log(Math.floor(Math.random() * 10));
 // → 2
 ```
 
-Multiplicar o número aleatório por dez resulta em um número que seja maior ou igual a zero e menor do que dez. Devido ao fato de que `Math.floor` arredonda o valor para baixo, essa expressão irá produzir, com chances iguais, qualquer número de zero a nove.
+Multiplicar o número aleatório por dez resulta em um número que seja maior ou igual a zero e menor do que dez.
 
-Também existem as funções `Math.ceil` (para arredondar o valor para o maior número inteiro mais próximo) e `Math.round` (para arredondar o valor para o número inteiro mais próximo).
+A função `Math.floor` arredonda o valor sempre para baixo.
+
+```js 
+console.log(Math.floor(5.05));
+// → 5
+
+console.log(Math.floor(-5.05));
+// → -6
+
+```
+
+Também existem as funções `Math.ceil` que arredondar o valor sempre para cima 
+```js 
+console.log(Math.ceil(7.004));
+// → 8
+
+console.log(Math.ceil(-7.004));
+// → -7
+```
+
+Ea função  `Math.round` que arredondar o valor para o número inteiro mais próximo, seja para baixo ou para cima.
+```js
+console.log(Math.round(5.50));
+// → 6
+
+console.log(Math.round(5.40));
+// → 5
+
+console.log(Math.round(-5.51)); // ...
+// → -6
+
+console.log(Math.round(-5.50));
+// → -5
+
+console.log(Math.round(-5.40));
+// → -5
+```
 
 ## O objeto global
 
-O escopo global, que é o espaço no qual as variáveis globais residem, também pode ser abordado como um objeto no JavaScript. Cada variável global está presente como uma propriedade desse objeto. Nos navegadores, o objeto do escopo global é armazenado na variável `window`.
+O escopo global, que é o espaço onde as variáveis globais residem, também pode ser abordado como um objeto no JavaScript. Cada variável global está presente como uma propriedade desse objeto. Nos navegadores, o objeto do escopo global é armazenado na variável `window`.
 
 ```js
 var myVar = 10;
