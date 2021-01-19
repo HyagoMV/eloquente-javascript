@@ -710,13 +710,13 @@ console.log(window.myVar);
 
 ## Resumo
 
-Objetos e _arrays_ (que são tipos específicos de objetos) fornecem maneiras de agrupar um conjunto de valores em um único valor. Conceitualmente, ao invés de tentar carregar e manter todas as coisas individualmente em nossos braços, eles nos permitem colocar e carregar todas as coisas relacionadas dentro de uma bolsa.
+Objetos e _arrays_ fornecem maneiras de agrupar um conjunto de valores em um único valor. Conceitualmente, ao invés de tentar carregar e manter todas as coisas individualmente em nossos braços, eles nos permitem colocar e carregar todas as coisas relacionadas dentro de uma bolsa.
 
 Com exceção de `null` e `undefined`, a maioria dos valores no JavaScript possuem propriedades e são acessados usando `obj.propName` ou `obj["propName"]`. Objetos tendem a usar nomes para suas propriedades e armazenam mais o menos uma quantidade fixa delas. Por outro lado, os _Arrays_ normalmente contêm quantidades variáveis de valores conceitualmente iguais e usam números (iniciando do zero) como os nomes de suas propriedades.
 
 Existem algumas propriedades com nomes específicos nos _arrays_, como `length` e uma série de métodos. Métodos são funções que são armazenadas em propriedades e, normalmente, atuam no valor nas quais elas são propriedade.
 
-Objetos podem também ser usados como mapas, associando valores com seus nomes. O operador `in` pode ser usado para verificar se um objeto contém a propriedade com o nome informado. A mesma palavra-chave pode ser usada em um loop `for` (`for (var name in object)`) para percorrer todas as propriedades do objeto.
+Objetos podem também ser usados como mapas, associando valores com seus nomes. O operador `in` pode ser usado para verificar se um objeto contém a propriedade com o nome informado. A mesma palavra-chave pode ser usada em um loop `for (var prop in object)` para percorrer todas as propriedades do objeto.
 
 ## Exercícios
 
